@@ -138,4 +138,5 @@ if __name__ == '__main__':
 	privkey, pubkey = getkeys(phrase)
 	print 'private key', privkey
 	print 'public key', pubkey
+	print >>sys.stderr, 'public key', pubkey
 

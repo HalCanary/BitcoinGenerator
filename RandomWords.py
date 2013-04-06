@@ -7,19 +7,20 @@ Dedicated to the public domain.
 '''
 import random,math,sys,os
 useDevRandom = True
+dicewareWordlist = '~/Downloads/diceware.wordlist.asc'
+with open(os.path.expanduser(dicewareWordlist)) as f:
+	WordList = [line.split()[1]
+				for nu,line in enumerate(f) if 2 <= nu < 7778]
 def GetRandom():
 	if useDevRandom:
-		with open('/dev/random', 'r') as f:
+		with open('/dev/random', 'rb') as f:
 			random.seed(f.read(16))
 		return random
 	else:
 		return random.SystemRandom()
-
-with open(os.path.expanduser('~/Downloads/diceware.wordlist.asc')) as f:
-	X = [line.split()[1] for nu,line in enumerate(f) if 2 <= nu < 7778]
 required_entropy = 128
-numwords = int(math.ceil(required_entropy / math.log(len(X),2)))
-s = ' '.join(GetRandom().choice(X) for i in xrange(numwords))
+numwords = int(math.ceil(required_entropy / math.log(len(WordList),2)))
+s = ' '.join(GetRandom().choice(WordList) for i in xrange(numwords))
 sys.stdout.write(s)
 sys.stdout.flush()
 sys.stderr.write('\n')
