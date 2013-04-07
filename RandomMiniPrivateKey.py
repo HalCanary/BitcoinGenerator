@@ -19,7 +19,7 @@ def encode(num):
 
 def DevRand(numbytes):
 	num = 0
-	with open('/dev/urandom', 'rb') as f:
+	with open('/dev/random', 'rb') as f:
 		for i in xrange(numbytes):
 			num = (num * 0x100) + ord(f.read(1))
 	return num
