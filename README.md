@@ -19,8 +19,8 @@ As long as [1] and [2] are stored secret and safe, money may be
 deposited into this account via [3].  At any time, the account
 balance may be checked using http://blockchain.info/.
 
-Use
----
+Use: BitcoinGenerator.py
+------------------------
 
 From a command-line (denoted by '`$ `'), type:
 
@@ -31,6 +31,9 @@ The private key will be the sha256 hash of your passphrase.  (This is
 the same as used by brainwallet.org.)  A passphrase is (in theory)
 memorizable; it also serves as a redundant way to store and encode the
 private key.
+
+Use: RandomWords.py
+-------------------
 
 It is not recommended that you use a simple passphrase.  You can use
 the provided `RandomWords.py` program to generate a passphrase with
@@ -60,4 +63,12 @@ Or encrypt the output:
 
     $ ./RandomWords.py | ./BitcoinGenerator.py | gpg -cao mykeys.asc
 
+Use: RandomMiniPrivateKey.py
+----------------------------
+
+Also provided is `RandomMiniPrivateKey.py`, which generates a random
+mini private key with 168 bits of entropy.  It can be used in place of
+`RandomWords.py` thus:
+
+    $ ./RandomMiniPrivateKey.py | ./BitcoinGenerator.py
 
